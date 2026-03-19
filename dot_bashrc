@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+#iatest=$(expr index "S-" i)
+
+# Disable the bell
+#if [[ $iatest -gt 0 ]]; then bind "setbell-style visible"; fi
+
+# If not running interactively, don't do anything
+# [[ $- != *i* ]] && return
+
+# Expand history size
+export HISTFILESIZE=10000
+export HISTSIZE=500
+export HISTTIMEFORMAT="%F %T"
+
+# Remove duplicates from history and ignore lines starting with space
+export HISTCONTROL=erasedups:ignoredups:ignorespace
+
+# Check the window size after each command and update LINES/COLUMNS
+shopt -s checkwinsize
+
+# XDG folders
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Append to existing history instead of overwriting it
+shopt -s histappend
+PROMPT_COMMAND='history -a'
+alias h='history | grep'
+
+export EDITOR=nvim
+export VISUAL=nvim
+alias vim='nvim'
+alias vi='nvim'
+alias svi='sudo nvim'
+
+# Use ripgrep
+if command -v rg &> /dev/null; then
+	alias grep='rg'
+else
+	alias grep="usr/bin/grep $GREP_OPTIONS"
+fi
+unset GREP_OPTIONS
+
+alias grep='grep --color=auto'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+alias less='less-R'
+alias ps='ps auxf'
+alias p='ps aux | grep'
+alias topcpu='/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
+
+alias cls='clear' # habits...
+
+#alias rmd='/bin/rmdir --recursive --force= --verbose'
+
+alias f='find . | grep'
+
+alias checkcommand='type -t'
+
+alias home='cd ~'
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+alias ls='ls --color=auto'
+alias la='ls -Alh'                   # show hidden files
+alias lx='ls -lXBh'                  # sort by extension
+alias lk='ls -lSrh'                  # sort by size
+alias lc='ls -ltcrh'                 # sort by change time
+alias lu='ls -lturh'                 # sort by access time
+alias lr='ls -lRh'                   # recursive ls
+alias lt='ls -ltrh'                  # sort by date
+alias lm='ls -alh | more'            # pipe through more
+alias lw='ls -xAh'                   # wide listing format
+alias ll='ls -Fls'                   # long listing format
+alias labc='ls -lap'                 # sort alphabetical
+alias lf="ls -l | grep -E -v '^d'"   # files only
+alias lfa="ls -lA | grep -E -v '^d'" # files only with hidden
+alias ldir="ls -l | grep -E '^d'"    # directories only
+alias lla='ls -Al'                   # list and hidden files
+alias las='ls -A'                    # hidden files
+alias lls='ls -l'                    # list
+
+PS1='[\u@\h \W]\$ '
