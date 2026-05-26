@@ -34,6 +34,7 @@ export VISUAL=nvim
 alias vim='nvim'
 alias vi='nvim'
 alias svi='sudo nvim'
+alias v='nvim'
 
 # Use ripgrep
 if command -v rg &> /dev/null; then
