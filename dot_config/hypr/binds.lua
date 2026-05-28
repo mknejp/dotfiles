@@ -45,8 +45,8 @@ hl.bind(with_mod('mouse:272'), hl.dsp.window.drag())
 hl.bind(with_mod('mouse:273'), hl.dsp.window.resize())
 
 -- cycle workspaces
-hl.bind(with_mod('page_up'), hl.dsp.focus({ workspace = 'm-1', }))
-hl.bind(with_mod('page_down'), hl.dsp.focus({ workspace = 'm+1' }))
+hl.bind(with_mod('page_up'), hl.dsp.focus({ workspace = '-1', on_current_monitor = true }))
+hl.bind(with_mod('page_down'), hl.dsp.focus({ workspace = '+1', on_current_monitor = true }))
 -- switch workspace
 for i = 1, 10 do
   hl.bind(with_mod(tostring(i % 10)), hl.dsp.focus({ workspace = i }))
