@@ -57,10 +57,14 @@ for i = 1, 10 do
 end
 
 -- special workspaces
-local state_dir = '.local/state/hyprland/mknejp'
-local last_special_workspace_file = state_dir .. '/last_special_workspace'
+local state_dir = function()
+  return (os.getenv('XDG_STATE_HOME') or '.local/state') .. '/hyprland/mknejp'
+end
+local last_special_workspace_file = function()
+  return state_dir() .. '/last_special_workspace'
+end
 local read_last_special_workspace = function()
-  local f = io.open(last_special_workspace_file, 'r')
+  local f = io.open(last_special_workspace_file(), 'r')
   if (f) then
     local s = f:read('a')
     f:close()
@@ -70,8 +74,8 @@ local read_last_special_workspace = function()
 end
 local last_special_workspace = read_last_special_workspace()
 local write_last_special_workspace = function(s)
-  os.execute('mkdir -p "' .. state_dir .. '"')
-  local f = assert(io.open(last_special_workspace_file, 'w+'))
+  os.execute('mkdir -p "' .. state_dir() .. '"')
+  local f = assert(io.open(last_special_workspace_file(), 'w+'))
   if (f) then
     f:write(s)
     f:close()
