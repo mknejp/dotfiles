@@ -11,11 +11,11 @@ end
 hl.bind(with_mod('w'), hl.dsp.window.close())
 hl.bind(with_mod('q'), hl.dsp.window.kill())
 hl.bind(with_mod('f'), hl.dsp.window.float('toggle'))
-hl.bind(with_mod('f11'), hl.dsp.window.fullscreen('maximized', 'toggle'))
-hl.bind(with_mod('SHIFT', 'f11'), hl.dsp.window.fullscreen('fullscreen', 'toggle'))
+hl.bind(with_mod('f11'), hl.dsp.window.fullscreen({ mode = 'maximized', action = 'toggle' }))
+hl.bind(with_mod('SHIFT', 'f11'), hl.dsp.window.fullscreen({ mode = 'fullscreen', action = 'toggle' }))
 
 -- launch apps
-hl.bind(with_mod('return'), hl.dsp.exec_cmd(Vars.terminal.cmd))
+hl.bind(with_mod('SHIFT', 'return'), hl.dsp.exec_cmd(Vars.terminal.cmd))
 hl.bind(with_mod('space'), hl.dsp.exec_cmd(Vars.menu.cmd))
 hl.bind(with_mod('ALT', 'space'), hl.dsp.exec_cmd(Vars.menu.cmd_calc))
 hl.bind(with_mod('e'), hl.dsp.exec_cmd(Vars.file_manager.cmd))
@@ -83,7 +83,7 @@ local write_last_special_workspace = function(s)
   last_special_workspace = s
 end
 
-hl.bind(with_mod('SHIFT', 'return'), hl.dsp.workspace.toggle_special('term'))
+hl.bind(with_mod('return'), hl.dsp.workspace.toggle_special('term'))
 hl.bind(with_mod('escape'), function()
   local ws = hl.get_active_special_workspace('current')
 --  error(ws)
@@ -141,9 +141,9 @@ hl.bind('XF86AudioPrev', hl.dsp.exec_cmd(Vars.audio.cmd_prev), { locked = true }
 hl.bind('XF86AudioNext', hl.dsp.exec_cmd(Vars.audio.cmd_next), { locked = true })
 
 -- submap for gaming
-hl.bind(with_mod('g'),hl.dsp.submap('gaming'))
+hl.bind(with_mod('g'), hl.dsp.submap('gaming'))
 hl.define_submap('gaming', 'reset', function()
-  bind_with_and_without_mod('g', toggle_special_workspace('gaming'))
+  bind_with_and_without_mod('g', toggle_special_workspace('game'))
   hl.bind('catchall', hl.dsp.submap('reset'))
 end)
 

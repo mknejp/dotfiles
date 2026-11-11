@@ -7,7 +7,7 @@ local workspace_rules = {
     layout_opts = {
       direction = 'right',
     },
-    on_created_empty = Vars.terminal.cmd,
+    --on_created_empty = Vars.terminal.cmd,
   },
   {
     workspace = 'n[s:special:term]w[v1]',
@@ -16,22 +16,22 @@ local workspace_rules = {
     layout_opts = {
       direction = 'right',
     },
-    on_created_empty = Vars.terminal.cmd,
+    --on_created_empty = Vars.terminal.cmd,
   },
   {
     workspace = 'special:discord',
     gaps_out = { top = 300, bottom = 300, left = 1200, right = 1200 },
-    on_created_empty = 'discord',
+    --on_created_empty = 'discord',
   },
   {
     workspace = 'special:whatsapp',
     gaps_out = { top = 300, bottom = 300, left = 1200, right = 1200 },
-    on_created_empty = 'brave --app=https://web.whatsapp.com',
+    --on_created_empty = 'brave --app=https://web.whatsapp.com',
   },
   {
     workspace = 'special:teamspeak3',
     gaps_out = { top = 300, bottom = 300, left = 1200, right = 1200 },
-    on_created_empty = 'teamspeak3',
+    --on_created_empty = 'teamspeak3',
   },
   {
     workspace = 'special:game',
@@ -39,8 +39,17 @@ local workspace_rules = {
   {
     workspace = 'special:slack',
     gaps_out = { top = 300, bottom = 300, left = 1200, right = 1200 },
-    on_created_empty = 'brave --app=https://app.slack.com/client',
+    --on_created_empty = 'brave --app=https://app.slack.com/client',
   },
+}
+
+---@type table<string, string>
+local workspace_autostart = {
+  ['special:term'] = Vars.terminal.cmd,
+  ['special:discord'] = 'discord',
+  ['special:whatsapp'] = 'brave --app=https://web.whatsapp.com',
+  ['special:teamspeak3'] = 'teamspeak3',
+  ['special:slack'] = 'brave --app=https://app.slack.com/client',
 }
 
 ---@type HL.WindowRuleSpec[]
@@ -135,3 +144,12 @@ end
 for _, wr in ipairs(window_rules) do
   hl.window_rule(wr)
 end
+
+hl.on("workspace.created", function(ws)
+  if(ws.is_empty) then
+    local app = workspace_autostart[ws.name]
+    if(app) then
+      hl.dispatch(hl.dsp.exec_cmd(app))
+    end
+  end
+end)
