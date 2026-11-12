@@ -11,7 +11,6 @@ hl.config({
   },
   cursor = {
     persistent_warps = true,
-    hide_on_key_press = true,
   },
 })
 
