@@ -10,6 +10,9 @@ hl.env('HYPRCURSOR_SIZE', '24')
 hl.env('XCURSOR_THEME', 'broodwar')
 
 hl.config({
+  debug = {
+    disable_logs = true,
+  },
   dwindle = {
     preserve_split = true,
   },
