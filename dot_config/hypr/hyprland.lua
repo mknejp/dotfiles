@@ -7,6 +7,7 @@ end
 --hl.env('AQ_DRM_DEVICES', '/dev/dri/amd-igpu:/dev/dri/amd-dgpu')
 hl.env('XCURSOR_SIZE', '24')
 hl.env('HYPRCURSOR_SIZE', '24')
+hl.env('XCURSOR_THEME', 'broodwar')
 
 hl.config({
   dwindle = {
