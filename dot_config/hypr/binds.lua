@@ -8,8 +8,11 @@ local with_mod = function(...)
   return s
 end
 
+local SIGTERM = 15
+
 hl.bind(with_mod('w'), hl.dsp.window.close())
-hl.bind(with_mod('q'), hl.dsp.window.kill())
+hl.bind(with_mod('q'), hl.dsp.window.signal({ signal = SIGTERM }))
+hl.bind(with_mod('SHIFT', 'q'), hl.dsp.window.kill())
 hl.bind(with_mod('f'), hl.dsp.window.float('toggle'))
 hl.bind(with_mod('f11'), hl.dsp.window.fullscreen({ mode = 'maximized', action = 'toggle' }))
 hl.bind(with_mod('SHIFT', 'f11'), hl.dsp.window.fullscreen({ mode = 'fullscreen', action = 'toggle' }))
