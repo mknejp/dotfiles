@@ -9,6 +9,8 @@ return {
   menu = {
     cmd = 'rofi -modes drun -show drun',
     cmd_calc = 'rofi -modes calc -show calc',
+    audio_sink = 'rofi -modes audio-sink -show audio-sink',
+    audio_source = 'rofi -modes audio-source -show audio-source',
   },
   browser = {
     cmd = 'brave',

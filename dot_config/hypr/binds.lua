@@ -130,6 +130,8 @@ hl.bind(with_mod('SHIFT', 'm'), hl.dsp.exec_cmd(Vars.audio.cmd_mic_unmute))
 hl.bind(with_mod('a'), hl.dsp.submap('audio'))
 hl.define_submap('audio', 'reset', function()
   hl.bind('v', hl.dsp.exec_cmd(Vars.audio.cmd_vol_ctrl))
+  hl.bind('o', hl.dsp.exec_cmd(Vars.menu.audio_sink))
+  hl.bind('i', hl.dsp.exec_cmd(Vars.menu.audio_source))
   hl.bind('catchall', hl.dsp.submap('reset'))
 end)
 
