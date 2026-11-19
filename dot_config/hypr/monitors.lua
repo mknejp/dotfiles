@@ -9,6 +9,13 @@ return {
     reserved_area = { top = 0, bottom = 0, left = 6, right = 6 },
   },
   {
+    output = 'desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1',
+    mode = 'preferred',
+    position = '0x0',
+    scale = 1.5,
+    bitdepth = 10,
+  },
+  {
     output = "",
     mode = "preferred",
     position = "auto",
